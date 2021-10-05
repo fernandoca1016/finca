@@ -1,0 +1,53 @@
+CREATE TABLE CLIENT(
+ID NUMBER(10) NOT NULL,
+NAME VARCHAR(4000) NULL,
+EMAIL VARCHAR2 (20) NULL ,
+AGE NUMBER(10) NULL,
+PRIMARY KEY (ID));
+
+CREATE TABLE MESSAGE(
+ID NUMBER(10) NOT NULL,
+NAME VARCHAR(4000) NULL,
+PRIMARY KEY (ID));
+
+
+
+select * from CLIENT
+
+BEGIN
+    INSERT INTO CLIENT(ID,NAME,EMAIL,AGE) VALUES(:id, :name,:email,:age);
+    :status_code:=201;
+END;
+
+BEGIN
+    UPDATE CLIENT SET  NAME=:name, EMAIL=:email,AGE=:age WHERE ID=:id;
+    :status_code:=201;
+END;
+
+BEGIN
+   delete from CLIENT where ID = :id;
+   :status_code := 204;
+END;
+
+SELECT * FROM CLIENT WHERE ID=:id
+
+
+select * from MESSAGE
+
+BEGIN 
+    INSERT INTO MESSAGE (ID,MESSAGETEXT) VALUES (:id, :messagetext);
+    :status_code:=201;
+END;
+
+BEGIN
+    UPDATE MESSAGE SET  MESSAGETEXT=:messagetext WHERE ID=:id;
+    :status_code:=201;
+END;
+
+BEGIN
+    DELETE FROM MESSAGE WHERE ID=:id;
+    :status_code:=204;
+END;
+
+
+
